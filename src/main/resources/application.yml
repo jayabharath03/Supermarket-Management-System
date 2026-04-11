@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: supermarket-management-system
+  datasource:
+    url: jdbc:postgresql://localhost:5432/supermarket_db
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc:
+          time_zone: UTC
+
+server:
+  port: 8080
+
+logging:
+  level:
+    root: INFO
+    com.supermarket: DEBUG
+
+app:
+  jwt:
+    # base64-encoded secret key (minimum 256-bit)
+    secret: bXktdmVyeS1zZWN1cmUtand0LXNlY3JldC1rZXktZm9yLXN1cGVybWFya2V0LWFwcA==
+    expiration-ms: 86400000

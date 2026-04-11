@@ -1,6 +1,7 @@
 package com.supermarket.config;
 
 import com.supermarket.domain.Role;
+import com.supermarket.domain.RoleName;
 import com.supermarket.repository.RoleRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,13 +19,13 @@ public class DataInitializer {
     @Bean
     CommandLineRunner initRoles() {
         return args -> {
-            createRoleIfMissing("ADMIN");
-            createRoleIfMissing("CASHIER");
-            createRoleIfMissing("MANAGER");
+            createRoleIfMissing(RoleName.ADMIN);
+            createRoleIfMissing(RoleName.CASHIER);
+            createRoleIfMissing(RoleName.MANAGER);
         };
     }
 
-    private void createRoleIfMissing(String roleName) {
+    private void createRoleIfMissing(RoleName roleName) {
         roleRepository.findByName(roleName).orElseGet(() -> {
             log.info("Seeding default role: {}", roleName);
             return roleRepository.save(Role.builder().name(roleName).build());

@@ -9,13 +9,19 @@ Production-ready Spring Boot backend for a **Supermarket Management System** usi
 - PostgreSQL
 - Spring Data JPA
 - Spring Security + JWT
-- Validation + Global Exception Handling
+- Bean Validation + Global Exception Handling
 - SLF4J Logging
 
 ## Architecture
 ```
 controller -> service -> repository -> database
 ```
+
+## Domain Coverage
+- User, Role (with role enum)
+- Product
+- Bill, BillItem
+- Order, OrderItem (with order status enum)
 
 ## API Base URL
 `/api/v1`
@@ -27,6 +33,11 @@ controller -> service -> repository -> database
 - `POST /api/v1/products`
 - `POST /api/v1/billing/create`
 - `GET /api/v1/reports/sales`
+
+## Security Notes
+- Stateless JWT authentication.
+- Role-based authorization with method security (`@PreAuthorize`).
+- JSON responses for `401 Unauthorized` and `403 Forbidden`.
 
 ## Run
 ```bash

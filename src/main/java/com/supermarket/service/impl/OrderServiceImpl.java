@@ -1,6 +1,7 @@
 package com.supermarket.service.impl;
 
 import com.supermarket.domain.Order;
+import com.supermarket.domain.OrderStatus;
 import com.supermarket.domain.OrderItem;
 import com.supermarket.domain.Product;
 import com.supermarket.dto.OrderCreateRequest;
@@ -30,7 +31,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     @Transactional
     public OrderResponse create(OrderCreateRequest request) {
-        Order order = Order.builder().status("CREATED").createdAt(LocalDateTime.now()).totalAmount(BigDecimal.ZERO).build();
+        Order order = Order.builder().status(OrderStatus.CREATED).createdAt(LocalDateTime.now()).totalAmount(BigDecimal.ZERO).build();
         List<OrderItem> items = new ArrayList<>();
         BigDecimal total = BigDecimal.ZERO;
 

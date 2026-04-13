@@ -47,13 +47,13 @@ public class OrderServiceImpl implements OrderService {
         order.setTotalAmount(total);
         Order saved = orderRepository.save(order);
         log.info("Created order {}", saved.getId());
-        return new OrderResponse(saved.getId(), saved.getStatus(), saved.getTotalAmount(), saved.getCreatedAt());
+        return new OrderResponse(saved.getId(), saved.getStatus().name(), saved.getTotalAmount(), saved.getCreatedAt());
     }
 
     @Override
     public List<OrderResponse> getAll() {
         return orderRepository.findAll().stream()
-                .map(order -> new OrderResponse(order.getId(), order.getStatus(), order.getTotalAmount(), order.getCreatedAt()))
+                .map(order -> new OrderResponse(order.getId(), order.getStatus().name(), order.getTotalAmount(), order.getCreatedAt()))
                 .toList();
     }
 }
